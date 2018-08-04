@@ -1,7 +1,8 @@
 import Loadable from 'react-loadable'
-import LoadingIndicator from 'components/LoadingIndicator'
+import LoadingPage from 'pages/LoadingPage'
 
 export default Loadable({
   loader: () => import(/*webpackChunkName: "articles-page" */ 'pages/Articles'),
-  loading: LoadingIndicator,
+  loading: LoadingPage,
+  delay: 300,
 })

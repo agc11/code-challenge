@@ -1,6 +1,7 @@
 import React from 'react'
+import Wrapper from './Wrapper'
 
-const Header = () => <h2>Billin code challenge</h2>
+const Header = () => <Wrapper>Billin code challenge</Wrapper>
 
 export default Header
 

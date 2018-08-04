@@ -1,16 +1,16 @@
 import React from 'react'
-import ListArticles from 'containers/ListArticles'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import LoadingIndicator from 'components/LoadingIndicator'
 
-const Articles = () => {
+const LoadingPage = () => {
   return (
     <section>
-      <Header />
-      <ListArticles />
+      <Header />>
+      <LoadingIndicator />
       <Footer />
     </section>
   )
 }
 
-export default Articles
+export default LoadingPage

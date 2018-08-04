@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
-import { fetchArticles } from 'graphql/article';
+import React, { Component } from 'react'
+import { fetchArticles } from 'graphql/article'
+import Card from 'components/Card'
+import CardFooter from 'components/Card/CardFooter'
+import Wrapper from './Wrapper'
+import Button from 'components/Button';
 
 class Articles extends Component {
   // definition
@@ -7,21 +11,32 @@ class Articles extends Component {
     super(props);
     this.state = {
       articles: [],
-    };
+    }
   }
 
   // lifecycle
   componentWillMount() {
     fetchArticles().then(response => {
-      this.setState({ articles: response.data.articles });
-    });
+      this.setState({ articles: response.data.articles })
+    })
+  }
+
+  generateFooterCard({ id }) {
+    return (
+      <CardFooter.withButtons>
+        <Button danger text="remove" action={() => console.log(`remove ${id}`)} />
+        <Button primary text="update" action={() => console.log(`update ${id}`)} />
+      </CardFooter.withButtons>
+    )
   }
 
   // Renders
   render() {
     return (
-        <pre>{JSON.stringify(this.state.articles, null, 2)}</pre>
-    );
+      <Wrapper>
+        { this.state.articles.map(article => <Card key={article.id} article={article} FooterComponent={this.generateFooterCard(article)}/>) }
+      </Wrapper>
+    )
   }
 }
 
