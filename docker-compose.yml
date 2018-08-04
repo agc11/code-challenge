@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  server:
+    container_name: code-challenge-server
+    working_dir: /usr/src/app
+    build: ./server
+    restart: on-failure
+    depends_on:
+      - db
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4000:4000"
+    networks:
+      - code-challenge-network
+    command: yarn start
+  db:
+    container_name: code-challenge-db
+    image: mongo
+    restart: always
+    networks:
+      - code-challenge-network
+  front:
+    container_name: code-challenge-front
+    working_dir: /usr/src/app
+    build: ./front
+    restart: on-failure
+    volumes:
+      - ./front:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - code-challenge-network
+    command: yarn start
+networks:
+  code-challenge-network:

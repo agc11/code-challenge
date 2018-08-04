@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Faker from 'faker';
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost/billin');
+mongoose.connect('mongodb://code-challenge-db/billin');
 mongoose.set('debug', true);
 
 const Article = mongoose.model('Article', {
