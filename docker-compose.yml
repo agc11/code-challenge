@@ -1,15 +1,15 @@
 version: "3"
 
 services:
-  server:
-    container_name: code-challenge-server
+  back:
+    container_name: code-challenge-back
     working_dir: /usr/src/app
-    build: ./server
+    build: ./back
     restart: on-failure
     depends_on:
       - db
     volumes:
-      - ./server:/usr/src/app
+      - ./back:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - "4000:4000"
