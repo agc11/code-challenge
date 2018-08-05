@@ -1,24 +1,20 @@
 import React, { Component } from 'react'
-import { fetchArticles } from 'graphql/article'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import injectReducer from 'utils/injectReducer'
+import injectEpics from 'utils/injectEpics'
 import Card from 'components/Card'
 import CardFooter from 'components/Card/CardFooter'
+import Button from 'components/Button'
+import LoadingIndicator from 'components/LoadingIndicator'
 import Wrapper from './Wrapper'
-import Button from 'components/Button';
+import { fetchArticles } from './actions'
+import reducer from './reducer'
+import epics from './epics'
 
 class Articles extends Component {
-  // definition
-  constructor(props) {
-    super(props);
-    this.state = {
-      articles: [],
-    }
-  }
-
-  // lifecycle
   componentWillMount() {
-    fetchArticles().then(response => {
-      this.setState({ articles: response.data.articles })
-    })
+    this.props.fetchArticlesAction()
   }
 
   generateFooterCard({ id }) {
@@ -30,14 +26,40 @@ class Articles extends Component {
     )
   }
 
-  // Renders
   render() {
+    const { articles, error, loading } = this.props
     return (
       <Wrapper>
-        { this.state.articles.map(article => <Card key={article.id} article={article} FooterComponent={this.generateFooterCard(article)}/>) }
+        { (error) ? <p>Error</p> : '' }
+        { (loading) ? <LoadingIndicator /> : ''}
+        { articles.map(article => <Card key={article.id} article={article} FooterComponent={this.generateFooterCard(article)}/>) }
       </Wrapper>
     )
   }
 }
 
-export default Articles
+const mapStateToProps = ({ listArticles }) => {
+  return {
+    ...listArticles
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchArticlesAction: () => dispatch(fetchArticles()),
+  }
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)
+
+const withReducer = injectReducer({ key: 'listArticles', reducer });
+const withEpics = injectEpics({ epics });
+
+export default  compose(
+  withReducer,
+  withEpics,
+  withConnect,
+)(Articles)
