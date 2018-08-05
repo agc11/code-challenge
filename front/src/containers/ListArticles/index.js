@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
 import injectReducer from 'utils/injectReducer'
 import injectEpics from 'utils/injectEpics'
 import Card from 'components/Card'
@@ -21,7 +22,7 @@ class Articles extends Component {
     return (
       <CardFooter.withButtons>
         <Button danger text="remove" action={() => console.log(`remove ${id}`)} />
-        <Button primary text="update" action={() => console.log(`update ${id}`)} />
+        <Button primary text="update" action={() => this.props.history.push(`/${id}/`)} />
       </CardFooter.withButtons>
     )
   }
@@ -31,8 +32,10 @@ class Articles extends Component {
     return (
       <Wrapper>
         { (error) ? <p>Error</p> : '' }
-        { (loading) ? <LoadingIndicator /> : ''}
-        { articles.map(article => <Card key={article.id} article={article} FooterComponent={this.generateFooterCard(article)}/>) }
+        { (loading)
+            ? <LoadingIndicator />
+            : articles.map(article => <Card key={article.id} article={article} FooterComponent={this.generateFooterCard(article)}/>)
+        }
       </Wrapper>
     )
   }
@@ -61,5 +64,6 @@ const withEpics = injectEpics({ epics });
 export default  compose(
   withReducer,
   withEpics,
+  withRouter,
   withConnect,
 )(Articles)
