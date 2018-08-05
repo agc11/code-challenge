@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import configureStore from 'configureStore'
 import ArticlesPage from 'pages/Articles/ArticlesAsync'
+import ArticleDetailsPage from 'pages/ArticleDetails/ArticleDetailsAsync'
 
 const initialState = {}
 const store = configureStore(initialState)
@@ -13,6 +14,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path={`/`} component={ArticlesPage} />
+          <Route path={`/:id/`} component={ArticleDetailsPage} />
         </Switch>
       </BrowserRouter>
     </Provider>
