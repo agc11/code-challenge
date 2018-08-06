@@ -9,7 +9,10 @@ import CardFooter from 'components/Article/Card/CardFooter'
 import Button from 'components/Button'
 import LoadingIndicator from 'components/LoadingIndicator'
 import Wrapper from './Wrapper'
-import { fetchArticles } from './actions'
+import {
+  fetchArticles,
+  removeAsyncArticle,
+} from './actions'
 import reducer from './reducer'
 import epics from './epics'
 
@@ -21,7 +24,7 @@ class Articles extends Component {
   generateFooterCard({ id }) {
     return (
       <CardFooter.withButtons>
-        <Button danger text="remove" action={() => console.log(`remove ${id}`)} />
+        <Button danger text="remove" action={() => this.props.removeArticle({ id })} />
         <Button primary text="update" action={() => this.props.history.push(`/${id}/`)} />
       </CardFooter.withButtons>
     )
@@ -50,6 +53,7 @@ const mapStateToProps = ({ listArticles }) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchArticlesAction: () => dispatch(fetchArticles()),
+    removeArticle: ({ id }) => dispatch(removeAsyncArticle({ id }))
   }
 }
 

@@ -2,6 +2,7 @@ import {
   LOADING_ARTICLES,
   ADD_ARTICLES,
   FAIL_GET_ASYNC_ARTICLES,
+  REMOVE_ARTICLE,
 } from './actions'
 
 const initialState = {
@@ -19,7 +20,13 @@ export default (state = initialState, action) => {
     }
     case LOADING_ARTICLES: {
       const { loading = false } = action.payload
+      console.log('asd')
       return { ...state, loading }
+    }
+    case REMOVE_ARTICLE: {
+      const { id } = action.payload
+      const articles = state.articles.filter(article => article.id !== id)
+      return { ...state, articles }
     }
     default:
       return state
