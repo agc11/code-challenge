@@ -8,49 +8,41 @@ import LoadingIndicator from 'components/LoadingIndicator'
 import FormArticle from 'components/Article/FormArticle';
 import Wrapper from './Wrapper'
 import {
-  fetchArticle,
-  updateAsyncArticle,
+  createAsyncArticle,
 } from './actions'
 import reducer from './reducer'
 import epics from './epics'
 
 class Article extends Component {
-  componentWillMount() {
-    const { fetchArticleAction, match: { params: { id } } } = this.props
-    fetchArticleAction({ id })
-  }
-
   render() {
-    const { article, error, loading, updateArticle } = this.props
+    const { article, error, loading, handleCreateArticle } = this.props
     return (
       <Wrapper>
         { (error) ? <p>Error</p> : '' }
         { (loading)
           ? <LoadingIndicator />
-          : (
-            <FormArticle
-              handleSubmit={updateArticle}
-              buttonText="Edit"
-              article={article}
-            />
-          )
-
+          : ''
         }
+        <FormArticle
+          handleSubmit={handleCreateArticle}
+          buttonText="Save"
+          article={article}
+        />
+
       </Wrapper>
     )
   }
 }
 
-const mapStateToProps = ({ article }) => {
+const mapStateToProps = ({ createArticle }) => {
   return {
-    ...article
+    ...createArticle
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchArticleAction: ({ id }) => dispatch(fetchArticle({ id })),
-    updateArticle: ({ article }) => dispatch(updateAsyncArticle({ article })),
+    handleCreateArticle: ({ article }) => dispatch(createAsyncArticle({ article })),
   }
 }
 
@@ -59,8 +51,8 @@ const withConnect = connect(
   mapDispatchToProps,
 )
 
-const withReducer = injectReducer({ key: 'article', reducer });
 const withEpics = injectEpics({ epics });
+const withReducer = injectReducer({ key: 'createArticle', reducer });
 
 export default  compose(
   withReducer,

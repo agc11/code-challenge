@@ -26,3 +26,22 @@ export const UPDATE_ARTICLE = ({ id, author, content, excerpt, published, tags, 
     }
   }
 `
+export const CREATE_ARTICLE = ({ author, content, excerpt, published, tags, title }) => `
+  mutation {
+    updateArticle(
+      author: "${author}"
+      content: "${content}"
+      excerpt: "${excerpt}"
+      published: ${published}
+      title: "${title}"
+    ) {
+      author
+      content
+      excerpt
+      id
+      published
+      tags
+      title
+    }
+  }
+`

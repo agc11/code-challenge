@@ -6,7 +6,9 @@ import {
 } from './actions'
 
 const initialState = {
-  article: {}
+  article: {},
+  error: false,
+  loading: false,
 }
 
 
