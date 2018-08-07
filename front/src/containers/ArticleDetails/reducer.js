@@ -2,6 +2,7 @@ import {
   LOADING_ARTICLE,
   ADD_ARTICLE,
   FAIL_GET_ASYNC_ARTICLE,
+  UPDATE_ARTICLE,
 } from './actions'
 
 const initialState = {
@@ -18,6 +19,10 @@ export default (state = initialState, action) => {
     case LOADING_ARTICLE: {
       const { loading = false } = action.payload
       return { ...state, loading }
+    }
+    case UPDATE_ARTICLE: {
+      const { article, loading = false } = action.payload
+      return { ...state, article, loading }
     }
     default:
       return state

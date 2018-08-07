@@ -6,3 +6,23 @@ export const DELETE_ARTICLE = id => `
     }
   }
 `
+export const UPDATE_ARTICLE = ({ id, author, content, excerpt, published, tags, title }) => `
+  mutation {
+    updateArticle(
+      id: "${id}"
+      author: "${author}"
+      content: "${content}"
+      excerpt: "${excerpt}"
+      published: ${published}
+      title: "${title}"
+    ) {
+      author
+      content
+      excerpt
+      id
+      published
+      tags
+      title
+    }
+  }
+`

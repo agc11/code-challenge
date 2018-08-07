@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.1",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-loadable": "^5.4.0",

@@ -20,7 +20,6 @@ export default (state = initialState, action) => {
     }
     case LOADING_ARTICLES: {
       const { loading = false } = action.payload
-      console.log('asd')
       return { ...state, loading }
     }
     case REMOVE_ARTICLE: {

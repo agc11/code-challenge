@@ -24,7 +24,7 @@ const fetchArticles$ = (action$, store) =>
 const removeArticles$ = (action$, store) =>
    action$.pipe(
     ofType(REMOVE_ASYNC_ARTICLE),
-    delay(5000),
+    delay(500),
     flatMap(({ payload: { id }}) => deleteArticle({ id })),
     map(({ data: { deleteArticle } }) => removeArticle({ ...deleteArticle })),
     startWith(loading(true)),

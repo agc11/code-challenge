@@ -18,7 +18,8 @@ class EditArticle extends Component {
 
   handleSubmit(event) {
     const { article } = this.state
-    console.log('edit', article)
+    const { handleEditArticle } = this.props
+    handleEditArticle({ article })
   }
 
   formConfig() {
@@ -63,7 +64,7 @@ class EditArticle extends Component {
         htmlFor: "published",
         id: "published",
         checked: article.published,
-        onChange: (event) => this.handleChange({ field: 'published', value: event.target.value }),
+        onChange: (event) => this.handleChange({ field: 'published', value: event.target.checked }),
       },
 
     ]

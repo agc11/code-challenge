@@ -7,7 +7,10 @@ import injectEpics from 'utils/injectEpics'
 import LoadingIndicator from 'components/LoadingIndicator'
 import EditArticle from 'components/Article/EditArticle';
 import Wrapper from './Wrapper'
-import { fetchArticle } from './actions'
+import {
+  fetchArticle,
+  updateAsyncArticle,
+} from './actions'
 import reducer from './reducer'
 import epics from './epics'
 
@@ -17,14 +20,16 @@ class Article extends Component {
     fetchArticleAction({ id })
   }
 
+
+
   render() {
-    const { article, error, loading } = this.props
+    const { article, error, loading, updateArticle } = this.props
     return (
       <Wrapper>
         { (error) ? <p>Error</p> : '' }
         { (loading)
           ? <LoadingIndicator />
-          : (<EditArticle article={article} />)
+          : (<EditArticle article={article} handleEditArticle={({ article }) => updateArticle({ article })} />)
         }
       </Wrapper>
     )
@@ -40,6 +45,7 @@ const mapStateToProps = ({ article }) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchArticleAction: ({ id }) => dispatch(fetchArticle({ id })),
+    updateArticle: ({ article }) => dispatch(updateAsyncArticle({ article })),
   }
 }
 
