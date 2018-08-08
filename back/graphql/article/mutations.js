@@ -35,6 +35,19 @@ const Mutations = new GraphQLObjectType({
         return db.Article.findByIdAndUpdate(id, rest, { new: true })
       }
     },
+    addArticle: {
+      type: ArticleType,
+      args: {
+        author: { type: GraphQLString },
+        content: { type: GraphQLString },
+        excerpt: { type: GraphQLString },
+        published: { type: GraphQLBoolean },
+        title: { type: GraphQLString },
+      },
+      resolve: (value, { ...rest }) => {
+        return db.Article.create(rest)
+      }
+    },
   }),
 })
 
