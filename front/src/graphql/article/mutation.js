@@ -15,6 +15,7 @@ export const UPDATE_ARTICLE = ({ id, author, content, excerpt, published, tags, 
       excerpt: "${excerpt}"
       published: ${published}
       title: "${title}"
+      tags: [${tags.map(tag => `"${tag}"`)}]
     ) {
       author
       content
@@ -34,6 +35,7 @@ export const CREATE_ARTICLE = ({ author, content, excerpt, published, tags, titl
       excerpt: "${excerpt}"
       published: ${published}
       title: "${title}"
+      tags: [${tags.map(tag => `"${tag}"`)}]
     ) {
       author
       content

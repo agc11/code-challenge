@@ -43,6 +43,14 @@ class FormArticle extends Component {
         onChange: (event) => this.handleChange({ field: 'author', value: event.target.value }),
       },
       {
+        Component: FormFields.TextWithLabel,
+        label: "tags, separated by comas",
+        htmlFor: "tags",
+        id: "tags",
+        value: article.tags.join(','),
+        onChange: (event) => this.handleChange({ field: 'tags', value: event.target.value.split(',') }),
+      },
+      {
         Component: FormFields.TextAreaWithLabel,
         label: "content",
         htmlFor: "content",

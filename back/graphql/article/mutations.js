@@ -30,6 +30,7 @@ const Mutations = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: GraphQLBoolean },
         title: { type: GraphQLString },
+        tags: { type: new GraphQLList(GraphQLString) },
       },
       resolve: (value, { id, ...rest }) => {
         return db.Article.findByIdAndUpdate(id, rest, { new: true })
@@ -43,6 +44,7 @@ const Mutations = new GraphQLObjectType({
         excerpt: { type: GraphQLString },
         published: { type: GraphQLBoolean },
         title: { type: GraphQLString },
+        tags: { type: new GraphQLList(GraphQLString) },
       },
       resolve: (value, { ...rest }) => {
         return db.Article.create(rest)
