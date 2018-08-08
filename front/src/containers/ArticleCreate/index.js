@@ -13,7 +13,7 @@ import {
 import reducer from './reducer'
 import epics from './epics'
 
-class Article extends Component {
+class ArticleCreate extends Component {
   render() {
     const { article, error, loading, handleCreateArticle } = this.props
     return (
@@ -59,4 +59,4 @@ export default  compose(
   withEpics,
   withRouter,
   withConnect,
-)(Article)
+)(ArticleCreate)

@@ -21,13 +21,10 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOADING_CREATE_ARTICLE: {
-      console.log('loading', action)
-
       const { loading = false, error = false } = action.payload
       return { ...state, loading }
     }
     case FAIL_CREATE_ASYNC_ARTICLE: {
-      console.log('error', action)
       const { error = true, loading = false } = action.payload
       return { ...state, loading, error }
     }

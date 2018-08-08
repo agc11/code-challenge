@@ -8,7 +8,7 @@ import Card from 'components/Article/Card'
 import CardFooter from 'components/Article/Card/CardFooter'
 import Button from 'components/Button'
 import LoadingIndicator from 'components/LoadingIndicator'
-import Wrapper from './Wrapper'
+import { ListCards, Wrapper } from './list-article-styles'
 import {
   fetchArticles,
   removeAsyncArticle,
@@ -22,23 +22,35 @@ class Articles extends Component {
   }
 
   generateFooterCard({ id }) {
+    const { removeArticle, history: { push } } = this.props
     return (
       <CardFooter.withButtons>
-        <Button danger text="remove" action={() => this.props.removeArticle({ id })} />
-        <Button primary text="update" action={() => this.props.history.push(`/${id}/`)} />
+        <Button danger text="remove" action={() => removeArticle({ id })} />
+        <Button primary text="update" action={() => push(`/article/${id}/`)} />
       </CardFooter.withButtons>
     )
   }
 
   render() {
-    const { articles, error, loading } = this.props
+    const { articles, error, loading, history: { push } } = this.props
+    if (error) {
+      return <p>Error</p>
+    }
+
+    if (loading) {
+      return <LoadingIndicator />
+    }
+
     return (
       <Wrapper>
-        { (error) ? <p>Error</p> : '' }
-        { (loading)
-            ? <LoadingIndicator />
-            : articles.map(article => <Card key={article.id} article={article} FooterComponent={this.generateFooterCard(article)}/>)
+        <Button primary text="Create" action={() => push(`/article/create/`)} />
+        <ListCards>
+        {
+          articles.map(article =>
+            <Card key={article.id} article={article} FooterComponent={this.generateFooterCard(article)} />
+          )
         }
+        </ListCards>
       </Wrapper>
     )
   }

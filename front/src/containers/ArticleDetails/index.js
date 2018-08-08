@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import injectReducer from 'utils/injectReducer'
 import injectEpics from 'utils/injectEpics'
 import LoadingIndicator from 'components/LoadingIndicator'
-import FormArticle from 'components/Article/FormArticle';
+import FormArticle from 'components/Article/FormArticle'
 import Wrapper from './Wrapper'
 import {
   fetchArticle,
@@ -14,7 +14,7 @@ import {
 import reducer from './reducer'
 import epics from './epics'
 
-class Article extends Component {
+class ArticleDetails extends Component {
   componentWillMount() {
     const { fetchArticleAction, match: { params: { id } } } = this.props
     fetchArticleAction({ id })
@@ -67,4 +67,4 @@ export default  compose(
   withEpics,
   withRouter,
   withConnect,
-)(Article)
+)(ArticleDetails)
