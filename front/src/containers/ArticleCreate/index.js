@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
@@ -32,6 +33,34 @@ class ArticleCreate extends Component {
       </Wrapper>
     )
   }
+}
+
+ArticleCreate.defaultProps = {
+  article: {
+    author: '',
+    excerpt: '',
+    id: '',
+    title: '',
+    tags: [],
+    content: '',
+    published: false,
+  }
+}
+
+ArticleCreate.propTypes = {
+  article: PropTypes.shape({
+      author: PropTypes.string,
+      excerpt: PropTypes.string,
+      id: PropTypes.string,
+      title: PropTypes.string,
+      tags: PropTypes.array,
+      content: PropTypes.string,
+      published: PropTypes.bool,
+    }
+  ),
+  error: PropTypes.bool,
+  loading: PropTypes.bool,
+  handleCreateArticle: PropTypes.func,
 }
 
 const mapStateToProps = ({ createArticle }) => {

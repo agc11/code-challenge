@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import WithLabel from './WithLabel'
 import TextArea from '../Inputs/TextArea'
 
-const CheckboxWithLabel = ({ id, label, ...rest }) => {
+const TextAreaWithLabel = ({ id, label, ...rest }) => {
   return (
     <WithLabel text={label} htmlFor={id} >
       <TextArea id={id} {...rest} />
@@ -10,4 +11,9 @@ const CheckboxWithLabel = ({ id, label, ...rest }) => {
   )
 }
 
-export default CheckboxWithLabel
+TextAreaWithLabel.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string,
+}
+
+export default TextAreaWithLabel

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
@@ -54,6 +55,25 @@ class Articles extends Component {
       </Wrapper>
     )
   }
+}
+
+ListCards.propTypes = {
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      excerpt: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      tags: PropTypes.array.isRequired,
+      content: PropTypes.string.isRequired,
+      published: PropTypes.bool.isRequired,
+    })
+  ),
+  error: PropTypes.bool,
+  loading: PropTypes.bool,
+  history: PropTypes.object,
+  removeArticle: PropTypes.func,
+  fetchArticlesAction: PropTypes.func,
 }
 
 const mapStateToProps = ({ listArticles }) => {

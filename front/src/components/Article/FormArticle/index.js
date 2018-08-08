@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import FormFields from 'components/FormFields'
 import Button from 'components/Button';
 import Wrapper from './Wrapper'
@@ -87,6 +88,19 @@ class FormArticle extends Component {
       </Wrapper>
     )
   }
+}
+
+FormArticle.propTypes = {
+  article: PropTypes.shape({
+    author: PropTypes.string,
+    excerpt: PropTypes.string,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    tags: PropTypes.array,
+    content: PropTypes.string,
+    published: PropTypes.bool,
+  }),
+  FooterComponent: PropTypes.element,
 }
 
 export default FormArticle
