@@ -43,7 +43,7 @@ export function injectAsyncEpics(store, isValid) {
       console.error('(app/utils...) injectAsyncEpics: Expected `epics` to be an array of functions')
     }
 
-    if (!isEmpty(epics)) {
+    if (isEmpty(epics)) {
       console.warn('(app/utils...) injectAsyncEpics: Received an empty `epics` array')
     }
 
