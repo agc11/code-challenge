@@ -1,10 +1,9 @@
-import { catchError, concat, delay, finalize, flatMap, tap, mapTo, startWith, switchMap } from 'rxjs/operators'
-import { empty, of, from } from 'rxjs'
+import { catchError, delay, flatMap, mapTo } from 'rxjs/operators'
+import { of } from 'rxjs'
 import { ofType } from 'redux-observable'
 import { push } from 'react-router-redux'
 import {
   ASYNC_CREATE_ARTICLE,
-  loading,
   error,
 } from './actions'
 import {

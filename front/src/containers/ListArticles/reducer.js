@@ -1,7 +1,6 @@
 import {
   LOADING_ARTICLES,
   ADD_ARTICLES,
-  FAIL_GET_ASYNC_ARTICLES,
   REMOVE_ARTICLE,
 } from './actions'
 

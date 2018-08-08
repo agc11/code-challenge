@@ -26,7 +26,7 @@ class Articles extends Component {
     return (
       <CardFooter.withButtons>
         <Button danger text="remove" action={() => removeArticle({ id })} />
-        <Button primary text="update" action={() => push(`/article/${id}/`)} />
+        <Button primary text="view" action={() => push(`/article/${id}/`)} />
       </CardFooter.withButtons>
     )
   }
